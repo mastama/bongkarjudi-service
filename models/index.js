@@ -40,4 +40,25 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+db.user = require("../models/user.model")(sequelize, Sequelize);
+db.role = require("../models/role.model")(sequelize, Sequelize);
+
+/**
+ * Parameter through: 'user_roles' menunjukkan bahwa kita akan memiliki tabel baru bernama user_roles sebagai penghubung
+ * antara tabel pengguna (users) dan peran (roles)
+ *  via their primary key as foreign keys.
+ */
+db.role.belongsToMany(db.user, {
+  through: "user_roles"
+});
+db.user.belongsToMany(db.role, {
+  through: "user_roles"
+});
+
+db.ROLES = [
+    "user",
+    "admin",
+    "moderator"
+];
+
 module.exports = db;

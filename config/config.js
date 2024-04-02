@@ -5,7 +5,8 @@ const {
   DB_USERNAME,
   DB_PASSWORD,
   DB_HOSTNAME,
-  DB_PORT
+  DB_PORT,
+  SECRET_KEY
 } = process.env;
 
 module.exports = {
@@ -15,7 +16,8 @@ module.exports = {
     "database": DB_NAME,
     "host": DB_HOSTNAME,
     "port": DB_PORT,
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "secretKey": SECRET_KEY
   },
   "test": {
     "username": DB_USERNAME,
